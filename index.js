@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
                 if(!exists){
                     res.statusCode = 404
                     res.setHeader('Content-Type', 'text/html')
-                    res.end('<html><body><h1>Not Found</h1></body></html>')
+                    res.end('<html><body><h1>Error 404: ' + fileUrl + ' not found</h1></body></html>')
                     return
                 }
                 res.statusCode = 200
@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
         else {
             res.statusCode = 404
             res.setHeader('Content-Type', 'text/html')
-            res.end('<html><body><h1>Not a HTML File</h1></body></html>')
+            res.end('<html><body><h1>Error 404: ' + fileUrl + ' not a HTML file</h1></body></html>')
             return
         }
     }
