@@ -7,16 +7,17 @@ const port = 5000
 
 const server = http.createServer((req, res) => {
     console.log('Request for ' + req.url + ' by method ' + req.method);
-    if(req.method == 'GET'){
+    if(req.method == 'GET'){ //Only for GET method
         var fileUrl
         if(req.url == '/') fileUrl='/index.html'
         else fileUrl = req.url
 
         var filePath = path.resolve('./public' + fileUrl)
+        console.log(path.join(__dirname, './public', fileUrl))
         const fileExt = path.extname(filePath)
-        if(fileExt == '.html'){
-            fs.exists(filePath, (exists) => {
-                if(!exists){
+        if(fileExt == '.html'){ //Only for html files
+            fs.exists(filePath, (exists) => { 
+                if(!exists){ //Only for existing files
                     res.statusCode = 404
                     res.setHeader('Content-Type', 'text/html')
                     res.end('<html><body><h1>Error 404: ' + fileUrl + ' not found</h1></body></html>')
